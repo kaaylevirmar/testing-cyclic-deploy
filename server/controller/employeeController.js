@@ -10,13 +10,24 @@ const Transaction = require('../../models/transaction')
 const User = require('../../models/user');
 
 // DB Connection
-mongoose.connect('mongodb://127.0.0.1:27017/hrms')
-.then(()=>{
-    console.log('Connection Open.');
+
+
+// Replace <password> with your actual MongoDB Atlas password and <dbname> with your database name
+const uri = `mongodb+srv://kylevirmarmillendez:O1tusWRhUlzOR1jO@clustername.mongodb.net/<dbname>?retryWrites=true&w=majority`;
+
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
 })
-.catch((err)=>{
-    console.log(`Error: ${err}`);
+.then(() => {
+    console.log('Connected to MongoDB Atlas');
 })
+.catch(err => {
+    console.error('Error connecting to MongoDB Atlas:', err);
+});
+
 const activePage = '/employees'
 
 // Function to set the number value for the employeeID
