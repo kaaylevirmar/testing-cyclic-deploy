@@ -9,7 +9,7 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const localStrategy = require('passport-local');
 const User = require('./models/user');
-const mongoose = require('mongoose');
+
 
 // Router Imports
 const applicationRouter = require('./server/routes/applicationRouters');
@@ -92,14 +92,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', {err, activePage});
 })
 
-const uri = 'mongodb+srv://kylevirmarmillendez:RGUQt1eBvwtBaQep@hrms.eqhjczg.mongodb.net/?retryWrites=true&w=majority'
-mongoose.connect(uri)
-.then(()=>{
-    
-})
-.catch((error)=>{
-    console.log(error);
-})
+
 app.listen(5000, () => {
     console.log("Server running in port 5000");
 })

@@ -14,8 +14,7 @@ const User = require('../../models/user');
 const uri = 'mongodb+srv://kylevirmarmillendez:RGUQt1eBvwtBaQep@hrms.eqhjczg.mongodb.net/?retryWrites=true&w=majority'
 mongoose.connect(uri)
 .then(()=>{
-    
-})
+    })
 .catch((error)=>{
     console.log(error);
 })
