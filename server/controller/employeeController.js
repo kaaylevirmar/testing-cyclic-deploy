@@ -11,7 +11,14 @@ const User = require('../../models/user');
 
 // DB Connection
 
-
+const uri = 'mongodb+srv://kylevirmarmillendez:RGUQt1eBvwtBaQep@hrms.eqhjczg.mongodb.net/?retryWrites=true&w=majority'
+mongoose.connect(uri)
+.then(()=>{
+    
+})
+.catch((error)=>{
+    console.log(error);
+})
 // Replace <password> with your actual MongoDB Atlas password and <dbname> with your database name
 
 
