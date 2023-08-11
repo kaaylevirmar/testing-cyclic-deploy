@@ -13,20 +13,7 @@ const User = require('../../models/user');
 
 
 // Replace <password> with your actual MongoDB Atlas password and <dbname> with your database name
-const uri = `mongodb+srv://kylevirmarmillendez:O1tusWRhUlzOR1jO@clustername.mongodb.net/<dbname>?retryWrites=true&w=majority`;
 
-mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-})
-.then(() => {
-    console.log('Connected to MongoDB Atlas');
-})
-.catch(err => {
-    console.error('Error connecting to MongoDB Atlas:', err);
-});
 
 const activePage = '/employees'
 
