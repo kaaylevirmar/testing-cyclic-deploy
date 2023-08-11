@@ -1,0 +1,59 @@
+<% layout('/layouts/boilerplate') %>
+
+    <div class="my-3">
+        <h3 class="page-header mt-4 ms-3">Leave History</h3>
+    </div>
+    <div class="d-flex col-12 justify-content-between mx-3">
+        <div></div>
+        <div class="d-flex justify-content-end mb-2">
+            <div id="printButton"><button class="btn btn-light me-2" data-bs-toggle="tooltip" data-bs-html="true" data-placement="top" title="Print Table"><i class="bi bi-printer"></i></button>
+            </div>
+            <input type="text" class="form-control me-2 me-5" id="searchInput" placeholder="Search for a name">
+        </div>   
+    </div>
+
+<div class="d-flex mx-3 mb-5" style="max-height:80vh;">
+    <div class="col-12 overflow-auto">
+        <table class="table table-striped border rounded-3" id="employeeTable">
+            <thead style="position: sticky; top: 0; background-color: white; z-index: 1;">
+                <tr>
+                    <th class="text-success col text-center">Employee ID</th>
+                    <th class="text-success col text-center">Name</th>
+                    <th class="text-success col text-center">Leave Start</th>
+                    <th class="text-success col text-center">Leave End</th>
+                    <th class="text-success col text-center">Type</th>         
+                    <th class="text-success col text-center">Remarks</th>      
+                    <th class="text-success col text-center no-print"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i = 0; i < 50; i++) { %>
+                <%  for(let leave of leaves) { %>
+                <tr class="align-middle employee-row" style="font-size: 0.9em;">
+                    <td class="align-middle text-center"><%= leave.employeeId %></td>
+                    <td class="align-middle text-center"><%= leave.firstName %> <%= leave.lastName %></td>
+                    <td class="align-middle text-center"><%= leave.leaveStart %></td>
+                    <td class="align-middle text-center"><%= leave.leaveEnd %></td>
+                    <td class="align-middle text-center"><%= leave.leaveType %></td>
+                    <td class="align-middle text-center"><%= leave.remarks %></td>
+                    <td class="no-print">
+                        <div class="actions mx-0 d-flex align-middle">
+
+                            <a href="/leave-management/<%= leave._id %>"><button class="btn btn-sm px-3 ms-1" style="font-size: 1.2em;" data-toggle="tooltip" data-placement="top" title="View"><i class="bi bi-eye"></i></button></a>
+                            <a href="/leave-management/<%= leave._id %>/update-leave-form"><button class="btn btn-sm ms-1" style="font-size:1em;" data-toggle="tooltip" data-placement="top" title="Edit"><i class="bi bi-pencil"></i></button></a>
+                            <% if(currentUser && currentUser.role === 'manager' || currentUser.role === 'admin') { %>
+                            <form action="/leave-management/<%= leave.id %>?_method=DELETE" method="POST">
+                                <button class="btn btn-sm btn-light border border-danger text-danger ms-2" data-toggle="tooltip" data-placement="top" title="Delete"><i class="bi bi-trash"></i></button>
+                            </form>
+                            <% } %>
+                        </div>
+                    </td>
+                </tr>
+                <% } %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    
+ 
+</div>
